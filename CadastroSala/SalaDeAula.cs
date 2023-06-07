@@ -23,9 +23,10 @@ namespace CadastroSala
             string nome = Console.ReadLine();
             lista.Add(new Aluno(nome));
             Console.Clear();
+            
         }
 
-        public void exibirAlunosCadastrados()
+        public void exibirAlunosCadastrados(Controller controller)
         {
             try
             {
@@ -40,10 +41,9 @@ namespace CadastroSala
                 Console.WriteLine();
 
                 //Seleciona aluno e exibe o conteúdo relacionado ao mesmo.
-                /*Console.WriteLine("Digite o número do aluno que deseja visualizar:");
+                Console.WriteLine("Digite o número do aluno que deseja visualizar:");
                 int j = int.Parse(Console.ReadLine());
-                alunos[j - 1].exibirAluno();
-                */
+                lista[j - 1].exibirAluno(controller, this);
 
                 Console.WriteLine("Aperte qualquer botao para continuar");
                 int button = int.Parse(Console.ReadLine());

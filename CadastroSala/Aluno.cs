@@ -32,27 +32,33 @@ namespace CadastroSala
             this.nomeAluno = nomeAluno;
         }
 
-        public void exibirAluno()
+        public void exibirAluno(Controller controller, SalaDeAula sala)
         {
             Console.Clear();
             Console.WriteLine("Nome: {0}", this.getNomeAluno());
             Console.WriteLine();
             Console.WriteLine("Matérias e notas:");
             Console.WriteLine();
+            Console.WriteLine("Materia\t\t| 1Bim\t| 2Bim\t| 3Bim\t| 4Bim\t| Final");
+            Console.WriteLine();
             for (int i = 0; i < materias.Length; i++)
             {
-                materias[i].mediaFinal = materias[i].calcularMedia(materias[i].nota1, materias[i].nota2, materias[i].nota3, materias[i].nota4);
-                Console.WriteLine("{6} - {0}  | {1} | {2} | {3} | {4} | {5}",
-                    materias[i].nomeMateria,
-                    materias[i].nota1,
-                    materias[i].nota2,
-                    materias[i].nota3,
-                    materias[i].nota4,
-                    materias[i].mediaFinal,
-                    i + 1);
+                materias[i].MediaFinal = materias[i].calcularMedia(materias[i].Nota1, materias[i].Nota2, materias[i].Nota3, materias[i].Nota4);
+                Console.WriteLine("{6}- {0:F1}\t| {1:F1}\t| {2:F1}\t| {3:F1}\t| {4:F1}\t| {5:F1}",
+                    materias[i].NomeMateria,
+                    materias[i].Nota1,
+                    materias[i].Nota2,
+                    materias[i].Nota3,
+                    materias[i].Nota4,
+                    materias[i].MediaFinal,
+                    i+1);
             }
-            Console.WriteLine("Aperte qualquer botao para continuar");
+            Console.WriteLine("Escolha a matéria que deseja vizualizar:");
+            Console.WriteLine();
+            Console.WriteLine("Digite o código e aperte enter:");
             int button = int.Parse(Console.ReadLine());
+            materias[button-1].exibirMateria(this,controller, sala);
+            
         }
     }
 }

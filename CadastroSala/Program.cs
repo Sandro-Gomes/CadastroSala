@@ -4,21 +4,15 @@ namespace CadastroSala
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
             SalaDeAula sala1 = new SalaDeAula(42, 6);
             bool executar = true;
             int i;
+            Controller controller = new Controller();
             while(executar == true){
-                Console.Clear();
-                Console.WriteLine("Turma {0} | {1}ª Serie", sala1.numTurma, sala1.getSerie());
-                Console.WriteLine();
-                Console.WriteLine("[1] Cadastrar Novo Aluno");
-                Console.WriteLine("[2] Alunos Cadastrados");
-                Console.WriteLine("[3] Notas da turma");
-                Console.WriteLine("[4] Sair");
-                Console.WriteLine();
-                Console.WriteLine("Digite a opção desejada:");
+                controller.menuInicial(sala1);
                 try
                 {
                     i = int.Parse(Console.ReadLine());
@@ -31,7 +25,7 @@ namespace CadastroSala
                             break;
                         case 2:
                             Console.Clear();
-                            sala1.exibirAlunosCadastrados();
+                            sala1.exibirAlunosCadastrados(controller);
                             break;
                         case 3:
                             Console.Clear();
