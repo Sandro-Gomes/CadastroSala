@@ -23,10 +23,10 @@ namespace CadastroSala
             string nome = Console.ReadLine();
             lista.Add(new Aluno(nome));
             Console.Clear();
-            
+            lista.Sort((obj1, obj2) => obj1.NomeAluno.CompareTo(obj2.NomeAluno));
         }
 
-        public void exibirAlunosCadastrados(Controller controller)
+        public void exibirAlunosCadastrados()
         {
             try
             {
@@ -36,14 +36,14 @@ namespace CadastroSala
                 foreach (Aluno alunos in lista)
                 {
                     int index = lista.IndexOf(alunos);
-                    Console.WriteLine("{0} - {1}", index + 1, alunos.nomeAluno);
+                    Console.WriteLine("{0} - {1}", index + 1, alunos.NomeAluno);
                 }
                 Console.WriteLine();
 
                 //Seleciona aluno e exibe o conteúdo relacionado ao mesmo.
                 Console.WriteLine("Digite o número do aluno que deseja visualizar:");
                 int j = int.Parse(Console.ReadLine());
-                lista[j - 1].exibirAluno(controller, this);
+                lista[j - 1].exibirAluno(this);
 
                 Console.WriteLine("Aperte qualquer botao para continuar");
                 int button = int.Parse(Console.ReadLine());

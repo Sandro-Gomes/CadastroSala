@@ -6,14 +6,14 @@ namespace CadastroSala
 {
     class Aluno
     {
-        public string nomeAluno;
+        public string NomeAluno;
         int numLista;
         public Materia[] materias = new Materia[5];
         public bool situacaoAluno;
 
         public Aluno(string nome)
         {
-            this.nomeAluno = nome;
+            NomeAluno = nome;
             //Declara todas as matérias de aluno.
             materias[0] = new Materia("Portugues");
             materias[1] = new Materia("Matematica");
@@ -25,14 +25,14 @@ namespace CadastroSala
 
         public string getNomeAluno()
         {
-            return nomeAluno;
+            return NomeAluno;
         }
         public void setNomeAluno(string nomeAluno)
         {
-            this.nomeAluno = nomeAluno;
+            NomeAluno = nomeAluno;
         }
 
-        public void exibirAluno(Controller controller, SalaDeAula sala)
+        public void exibirAluno(SalaDeAula sala)
         {
             Console.Clear();
             Console.WriteLine("Nome: {0}", this.getNomeAluno());
@@ -53,11 +53,12 @@ namespace CadastroSala
                     materias[i].MediaFinal,
                     i+1);
             }
+            Console.WriteLine();
             Console.WriteLine("Escolha a matéria que deseja vizualizar:");
             Console.WriteLine();
             Console.WriteLine("Digite o código e aperte enter:");
             int button = int.Parse(Console.ReadLine());
-            materias[button-1].exibirMateria(this,controller, sala);
+            materias[button-1].exibirMateria(this, sala);
             
         }
     }

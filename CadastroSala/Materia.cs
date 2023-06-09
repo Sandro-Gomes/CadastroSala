@@ -45,10 +45,10 @@ namespace CadastroSala
                     break;
             }
         }
-        public void exibirMateria(Aluno aluno, Controller controller, SalaDeAula sala)
+        public void exibirMateria(Aluno aluno, SalaDeAula sala)
         {
             Console.Clear();
-            Console.WriteLine("Aluno:   {0}", aluno.nomeAluno);
+            Console.WriteLine("Aluno:   {0}", aluno.NomeAluno);
             Console.WriteLine("Matéria: {0}", this.NomeMateria);
             Console.WriteLine();
             Console.WriteLine("----------- ||Notas por bimestre|| ------------");
@@ -61,23 +61,33 @@ namespace CadastroSala
             int notaAlterar = int.Parse(Console.ReadLine());
             Console.WriteLine();
             Console.WriteLine("Agora digite a nova nota: ");
+
             double novaNota = double.Parse(Console.ReadLine());
-            AlterarNota(novaNota, notaAlterar);
-            Console.Clear();
-            Console.WriteLine("Nota alterada com sucesso! O que deseja fazer a seguir?");
+            
+            //Verifica se a nota é válida
+            if(novaNota < 0 || novaNota > NotaMaxima) {
+                Console.Clear();
+                Console.WriteLine("Nota digitada com valores inválidos! O que deseja fazer a seguir?");
+            }
+            else
+            {
+                AlterarNota(novaNota, notaAlterar);
+                Console.Clear();
+                Console.WriteLine("Nota alterada com sucesso! O que deseja fazer a seguir?");
+            }
             Console.WriteLine();
-            Console.WriteLine("1 - Atualizar página");
+            Console.WriteLine("1 - Visualizar lista de notas");
             Console.WriteLine("2 - Voltar ao menu principal");
             Console.WriteLine();
             Console.WriteLine("Digite o código e aperte enter:");
+
             int cod = int.Parse(Console.ReadLine());
             switch (cod)
             {
                 case 1:
-                    aluno.exibirAluno(controller, sala);
+                    aluno.exibirAluno(sala);
                     break;
                 case 2:
-                    controller.menuInicial(sala);
                     break;
             }
         }
