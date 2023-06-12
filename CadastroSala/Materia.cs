@@ -58,28 +58,39 @@ namespace CadastroSala
             Console.WriteLine("4- Quarto:   " + this.Nota4.ToString("F2"));
             Console.WriteLine();
             Console.WriteLine("Escolha a nota que deseja alterar (digite o código e aperte enter):");
-            int notaAlterar = int.Parse(Console.ReadLine());
-            Console.WriteLine();
-            Console.WriteLine("Agora digite a nova nota: ");
 
-            double novaNota = double.Parse(Console.ReadLine());
-            
-            //Verifica se a nota é válida
-            if(novaNota < 0 || novaNota > NotaMaxima) {
-                Console.Clear();
-                Console.WriteLine("Nota digitada com valores inválidos! O que deseja fazer a seguir?");
+            int notaAlterar = int.Parse(Console.ReadLine());
+            if (notaAlterar > 0 && notaAlterar < 5)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Agora digite a nova nota: ");
+
+                double novaNota = double.Parse(Console.ReadLine());
+
+                //Verifica se a nota é válida
+                if (novaNota < 0 || novaNota > NotaMaxima)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Nota digitada com valores inválidos! O que deseja fazer a seguir?");
+                }
+                else
+                {
+                    AlterarNota(novaNota, notaAlterar);
+                    Console.Clear();
+                    Console.WriteLine("Nota alterada com sucesso! O que deseja fazer a seguir?");
+                }
+                
             }
             else
             {
-                AlterarNota(novaNota, notaAlterar);
                 Console.Clear();
-                Console.WriteLine("Nota alterada com sucesso! O que deseja fazer a seguir?");
+                Console.WriteLine("Nota Inválida! Escolha o que fazer a seguir");
             }
             Console.WriteLine();
             Console.WriteLine("1 - Visualizar lista de notas");
             Console.WriteLine("2 - Voltar ao menu principal");
             Console.WriteLine();
-            Console.WriteLine("Digite o código e aperte enter:");
+            Console.Write("Digite o código e aperte enter: ");
 
             int cod = int.Parse(Console.ReadLine());
             switch (cod)
