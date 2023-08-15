@@ -1,54 +1,53 @@
 ﻿using System;
+using System.Collections.Generic;
+using CadastroSala.Entities;
+using CadastroSala.Entities.Exceptions;
+using CadastroSala.Views;
 
 namespace CadastroSala
 {
     class Program
     {
-        
+
         static void Main(string[] args)
         {
-            SalaDeAula sala1 = new SalaDeAula(42, 6);
+            SalaDeAula sala = new SalaDeAula(42,6);
             bool executar = true;
             int i;
-            while (executar == true){
-                Console.Clear();
-                Console.WriteLine("Turma {0} | {1}ª Série", sala1.numTurma, sala1.getSerie());
-                Console.WriteLine();
-                Console.WriteLine("[1] Cadastrar Novo Aluno");
-                Console.WriteLine("[2] Alunos Cadastrados");
-                Console.WriteLine("[3] Notas da turma");
-                Console.WriteLine("[4] Sair");
-                Console.WriteLine();
-                Console.WriteLine("Digite a opção desejada:");
+            while (executar == true)
+            {
                 try
                 {
-                    i = int.Parse(Console.ReadLine());
+                    i = TelaPrincipal.Exibir(sala);
 
-                    switch (i)
+                    if(i == 1)
                     {
-                        case 1:
-                            Console.Clear();
-                            sala1.cadastrarNovoAluno();
-                            break;
-                        case 2:
-                            Console.Clear();
-                            sala1.exibirAlunosCadastrados();
-                            break;                       
-                        case 3:
-                            Console.Clear();
-                            executar = false;
-                            //exibirNotasTurma();
-                            break;
-                        default:
-                            Console.Clear();
-                            Console.WriteLine("Opção inválida, tente novamente");
-                            break;
+                        sala.InserirNovoAluno(TelaPrincipal.TelaCadastrarAluno());
+                    }
+                    else if (i == 2)
+                    {
+                        TelaPrincipal.TelaAlunosCadastrados(sala.ListaAlunos);
+                    }
+                    else if (i == 3)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        throw new DomainException("Opção Inválida selecionada!");
                     }
                 }
-                catch(Exception e)
+                catch (ArgumentException e)
                 {
+                    Console.WriteLine("Valor Inválido: " + e.Message);
+                    Console.WriteLine("Aperte Enter pra continuar");
+                    Console.ReadLine();
                 }
-                
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
             }
         }
     }
