@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CadastroSala.Entities
 {
-    class Aluno
+    class Aluno : IComparable
     {
         public string Nome { get; set; }
         public List<Materia> Materias { get; set; } = new List<Materia>();
@@ -45,6 +45,16 @@ namespace CadastroSala.Entities
         public void exibirAluno(SalaDeAula sala)
         {
 
+        }
+
+        public int CompareTo(object obj)
+        {
+            if(!(obj is Aluno))
+            {
+                throw new ArgumentException("Erro: Objeto comparado não é uma instancia de aluno.");
+            }
+            Aluno outro = obj as Aluno;
+            return Nome.CompareTo(outro.Nome);
         }
     }
 }

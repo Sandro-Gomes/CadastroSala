@@ -19,13 +19,13 @@ namespace CadastroSala.Entities
 
         public void OrdenarAlunos(List<Aluno> lista)
         {
-            lista.Sort((obj1, obj2) => obj1.Nome.CompareTo(obj2.Nome));
+            lista.Sort();
         }
 
         public void InserirNovoAluno(Aluno aluno)
         {
-            ListaAlunos.Add(aluno);           
-        }
+            ListaAlunos.Add(aluno);
+            this.OrdenarAlunos(ListaAlunos);        }
 
     }
 }
